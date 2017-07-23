@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.njfu.bstabletest.mapper.PerMapper">
+
+    <select id="selectPers" resultType="Per">
+        SELECT id, name, age, address
+        FROM per
+        <where>
+            <if test="null != name and !name.equals('')">
+                name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="null != age">
+                and age = #{age}
+            </if>
+        </where>
+    </select>
+    
+    <insert id="insertPer">
+        INSERT INTO per(name, age, address)
+        VALUES (#{name}, #{age}, #{address})
+    </insert>
+
+    <update id="updatePer">
+        UPDATE per
+        SET name = #{name}, age = #{age}, address = #{address}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deletePerById">
+        DELETE
+        FROM per
+        WHERE id = #{id}
+    </delete>
+</mapper>
