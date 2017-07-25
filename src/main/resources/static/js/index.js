@@ -1,6 +1,6 @@
 var $testTable = $('#testTable');
 $testTable.bootstrapTable({
-    url: '/getPers',
+    url: 'getPers',
     queryParams: function (params) {
         return {
             offset: params.offset,
@@ -138,7 +138,7 @@ $('#saveAdd').click(function() {
                 var age = $('#addAgeText').val();
                 var address = $('#addAddressText').val();
                 if (verifyNameAndAddress(name, address)) {
-                    exchangeData('/addPer', null, name, age, address);
+                    exchangeData('addPer', null, name, age, address);
                 } else {
                     nullAlert();
                 }
@@ -169,7 +169,7 @@ $('#saveModify').click(function() {
                 var age = $('#modifyAgeText').val();
                 var address = $('#modifyAddressText').val();
                 if (verifyNameAndAddress(name, address)) {
-                    exchangeData('/modifyPer', mid, name, age, address);
+                    exchangeData('modifyPer', mid, name, age, address);
                 } else {
                     nullAlert();
                 }
@@ -185,7 +185,7 @@ function delPer(id) {
         message: '确认删除？',
         callback: function(flag) {
             if (flag) {
-                exchangeData("/delPer", id);
+                exchangeData("delPer", id);
             }
         }
     });
